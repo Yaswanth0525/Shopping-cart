@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
+import { useNavigate } from "react-router-dom";
+import { toast } from 'sonner';
 
 const Register = () => {
+    const navigate = useNavigate();
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -8,7 +11,7 @@ const Register = () => {
 
     const handleInputChange = (setter) => (e) => {
         setter(e.target.value);
-        setMessage({ type: '', text: '' }); // Clear messages on input change
+        setMessage({ type: '', text: '' }); 
     };
 
     const handleSubmit = (e) => {
@@ -18,6 +21,7 @@ const Register = () => {
         const existingUser = storedUsers.find(user => user.username === username);
         if (existingUser) {
             setMessage({ type: 'error', text: 'User already exists' });
+            toast.error('User already exists');
             return;
         }
 
@@ -27,7 +31,8 @@ const Register = () => {
         localStorage.setItem('users', JSON.stringify(storedUsers));
 
         setMessage({ type: 'success', text: 'Registration successful!' });
-        console.log('Registration successful!');
+        toast.success('Registration successful!');
+        navigate("/login") 
         setUsername('');
         setEmail('');
         setPassword('');

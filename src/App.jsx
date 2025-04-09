@@ -9,6 +9,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import { useContext } from "react";
 import { ShoppingCartContext } from "./context/indexs";
+import { Toaster } from "sonner";
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
   
   return (
     <>
+    <Toaster position="bottom-right" richColors />
     {isLoggedIn ? <Navigation /> : <Authonavigation />}
     <Routes>
         <Route path="/" element={<Home />} />

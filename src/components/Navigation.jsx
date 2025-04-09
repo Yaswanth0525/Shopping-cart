@@ -1,13 +1,15 @@
 import { useContext } from "react";
 import { ShoppingCartContext } from "../context/indexs";
 import { Link } from "react-router-dom";
+import { toast } from "sonner";
 
 function Navigation() {
   const { setIsLoggedIn } = useContext(ShoppingCartContext);
 
   const handleLogout = () => {
     setIsLoggedIn(false);
-    localStorage.removeItem("user"); // Clear the stored user data
+    toast.success("logged out successfully!!")
+    localStorage.removeItem("users"); // Clear the stored user data
   };
 
   return (

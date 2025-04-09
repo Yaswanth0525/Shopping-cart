@@ -2,6 +2,7 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { ShoppingCartContext } from "../context/indexs"; 
+import { toast } from "sonner";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -23,8 +24,10 @@ const Login = () => {
     if (authenticatedUser && authenticatedUser.password === password) {
       setMessage({ type: "success", text: "Login successful!" });
       setIsLoggedIn(true);
+      toast.success("Login successful!");
       navigate("/"); 
     } else {
+      toast.error("Invalid username or password");
       setMessage({ type: "error", text: "Invalid username or password" });
     }
 
